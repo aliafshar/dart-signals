@@ -6,9 +6,7 @@ DARTDOC = /usr/local/dart/dart-sdk/bin/dartdoc
 doc:
 	${DARTDOC} lib/signals.dart
 	git co --orphan gh-pages
-	git rm -rf .gitignore lib test Makefile pubspec.yaml README.md docs
-	git add docs/*
-	git mv -f docs/* .
+	git rm -rf .gitignore lib test Makefile pubspec.yaml README.md
 	git commit -m "Docs"
 	git push origin gh-pages
 	git co master
