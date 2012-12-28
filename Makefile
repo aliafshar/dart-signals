@@ -7,6 +7,7 @@ doc:
 	${DARTDOC} lib/signals.dart
 	git co --orphan gh-pages
 	git rm -rf .gitignore lib test Makefile pubspec.yaml README.md
+	git pull origin gh-pages
 	git commit -m "Docs"
 	git push origin gh-pages
 	git co master
