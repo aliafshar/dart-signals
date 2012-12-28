@@ -5,6 +5,8 @@ Simple signals for Dart.
 
 [![](https://drone.io/aliafshar/Signals/status.png)](https://drone.io/aliafshar/Signals/latest)
 
+[API Reference Documentation](http://aliafshar.github.com/dart-signals/docs/)
+
 For example:
 
     var s = new Signal();
