@@ -12,3 +12,4 @@ doc:
 	git push origin gh-pages
 	git co master
 	git branch -D gh-pages
+	git commit -a -m "Generated docs."
