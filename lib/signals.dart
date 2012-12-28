@@ -6,7 +6,7 @@
 library signals;
 
 /**
- * The type of a callback.
+ * The type definition of a callback.
  */
 typedef void Callback(dynamic arg);
 

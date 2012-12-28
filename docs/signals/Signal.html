@@ -36,6 +36,9 @@
 <p>For example:</p>
 <pre><code>var s = new Signal();
 s.on((arg) =&gt; print('Emitted signal with arg: $arg'));
+s.emit(1)
+</code></pre>
+<pre><code>&gt; Emitted signal with arg: 1
 </code></pre>
 <pre class="source">
 class Signal {
@@ -100,7 +103,7 @@ on(Callback callback) =&gt; subscriptions.add(callback);
         </div>
         
         <div class="footer">
-          <div>This page was generated at 2012-12-28 10:14:45.871</div>
+          <div>This page was generated at 2012-12-28 10:29:03.968</div>
         </div>
         <script async src="../client-live-nav.js"></script>
         </body></html>

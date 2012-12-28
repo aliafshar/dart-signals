@@ -10,7 +10,7 @@
           "refId": "Object"
         },
         "kind": "class",
-        "comment": "\nA Signal that can be subscribed to and emitted.\n\nFor example:\n\n    var s = new Signal();\n    s.on((arg) => print('Emitted signal with arg: $arg'));\n\n",
+        "comment": "\nA Signal that can be subscribed to and emitted.\n\nFor example:\n\n    var s = new Signal();\n    s.on((arg) => print('Emitted signal with arg: $arg'));\n    s.emit(1)\n\n    > Emitted signal with arg: 1\n\n\n",
         "name": "Signal",
         "children": [
           {
@@ -75,7 +75,7 @@
       },
       {
         "kind": "typedef",
-        "comment": "\nThe type of a callback.\n\n",
+        "comment": "\nThe type definition of a callback.\n\n",
         "name": "Callback",
         "id": "Callback"
       }
