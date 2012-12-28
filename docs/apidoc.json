@@ -1,0 +1,85 @@
+
+[
+  {
+    "kind": "library",
+    "name": "signals",
+    "children": [
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\nA Signal that can be subscribed to and emitted.\n\nFor example:\n\n    var s = new Signal();\n    s.on((arg) => print('Emitted signal with arg: $arg'));\n\n",
+        "name": "Signal",
+        "children": [
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "comment": "\nEmits the signal by calling all subscribers with the given argument.\n\n",
+            "name": "emit",
+            "children": [
+              {
+                "ref": {
+                  "name": "dynamic",
+                  "refId": "dynamic"
+                },
+                "kind": "param",
+                "name": "argument",
+                "id": "argument"
+              }
+            ],
+            "id": "emit1()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "comment": "\nConnects a callback to this signal.\n\n",
+            "name": "on",
+            "children": [
+              {
+                "ref": {
+                  "name": "Callback",
+                  "refId": "Callback"
+                },
+                "kind": "param",
+                "name": "callback",
+                "id": "callback"
+              }
+            ],
+            "id": "on1()"
+          },
+          {
+            "ref": {
+              "name": "List",
+              "refId": "List",
+              "arguments": [
+                {
+                  "name": "Callback",
+                  "refId": "Callback"
+                }
+              ]
+            },
+            "kind": "property",
+            "name": "subscriptions",
+            "id": "subscriptions"
+          }
+        ],
+        "id": "Signal"
+      },
+      {
+        "kind": "typedef",
+        "comment": "\nThe type of a callback.\n\n",
+        "name": "Callback",
+        "id": "Callback"
+      }
+    ],
+    "id": "file:///usr/local/google/home/afshar/src/arzio/google3/dart-signals/lib/signals.dart"
+  }
+]

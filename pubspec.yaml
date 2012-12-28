@@ -1,0 +1,5 @@
+name:  signals
+description:  Simple signals for Dart.
+
+dependencies:
+  unittest: any
