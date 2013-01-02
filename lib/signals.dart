@@ -8,7 +8,7 @@ library signals;
 /**
  * The type definition of a callback.
  */
-typedef void Callback(dynamic arg);
+typedef dynamic Callback(dynamic arg);
 
 
 /**
@@ -29,8 +29,18 @@ class Signal {
 
   /**
    * Emits the signal by calling all subscribers with the given argument.
+   *
+   * The return value is a future which will fire with a list of results from
+   * all signal handlers.
    */
-  emit(dynamic argument) => subscriptions.forEach((s) => s(argument));
+  emit(dynamic argument) {
+    var results = <Future>[];
+    for (Callback subscription in subscriptions) {
+      var result = subscription(argument);
+      results.add(result is Future ? result : new Future.immediate(result));
+    }
+    return Futures.wait(results);
+  }
 
   /**
    * Connects a callback to this signal.

@@ -3,7 +3,8 @@
 name:         signals
 version:      0.1.0
 author:       Ali Afshar <afshar@google.com>
-description:  Simple signals for Dart.
+description:  Subscribable signals for Dart.
 homepage:     https://github.com/aliafshar/dart-signals
 dependencies:
   unittest: any
+  signals: any

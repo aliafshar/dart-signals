@@ -1,11 +1,11 @@
 Signals
 =======
 
-Simple signals for Dart.
+Subscribable signals for Dart.
 
 [![](https://drone.io/aliafshar/Signals/status.png)](https://drone.io/aliafshar/Signals/latest)
 
-[API Reference Documentation](http://aliafshar.github.com/dart-signals/docs/)
+[API Reference Documentation](http://aliafshar.github.com/dart-signals/docs/signals.html)
 
 For example:
 
