@@ -14,4 +14,3 @@ For example:
  	s.emit(1)
 
 	> Emitted signal with arg: 1
- 	
