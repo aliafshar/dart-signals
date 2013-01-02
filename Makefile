@@ -3,8 +3,12 @@
 
 DARTDOC = /usr/local/dart/dart-sdk/bin/dartdoc
 
-doc:
+builddoc:
 	${DARTDOC} lib/signals.dart
+	git commit -a -m "Generated docs."
+	git push origin master
+
+pushdoc: builddoc
 	git push origin --delete gh-pages
 	git co --orphan gh-pages
 	git rm -rf .gitignore lib test Makefile pubspec.yaml README.md
