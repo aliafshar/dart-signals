@@ -1,7 +1,7 @@
 # Copyright (c) 2012, Google Inc
 
 name:         signals
-version:      0.2.0
+version:      0.3.0
 author:       Ali Afshar <afshar@google.com>
 description:  Subscribable signals for Dart.
 homepage:     https://github.com/aliafshar/dart-signals
