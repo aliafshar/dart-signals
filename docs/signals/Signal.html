@@ -40,6 +40,14 @@ s.emit(1)
 </code></pre>
 <pre><code>&gt; Emitted signal with arg: 1
 </code></pre>
+<p>Results can be collected from signal handlers which can be Future or
+otherwise:</p>
+<p>   var s = new Signal();
+   s.on((arg) => arg);
+   s.on((arg) => new Futures.immediate(arg));</p>
+<p>   s.emit(1).then((results) => print('Results of callbacks: $results'));</p>
+<blockquote>
+<p>Results of callbacks: <code>1, 1</code></p></blockquote>
 <pre class="source">
 class Signal {
 
@@ -47,8 +55,18 @@ class Signal {
 
  /**
   * Emits the signal by calling all subscribers with the given argument.
+  *
+  * The return value is a future which will fire with a list of results from
+  * all signal handlers.
   */
- emit(dynamic argument) =&gt; subscriptions.forEach((s) =&gt; s(argument));
+ emit(dynamic argument) {
+   var results = &lt;Future&gt;[];
+   for (Callback subscription in subscriptions) {
+     var result = subscription(argument);
+     results.add(result is Future ? result : new Future.immediate(result));
+   }
+   return Futures.wait(results);
+ }
 
  /**
   * Connects a callback to this signal.
@@ -81,8 +99,17 @@ final List&lt;Callback&gt; subscriptions = &lt;Callback&gt;[];
               title="Permalink to Signal.emit">#</a></h4>
 <div class="doc">
 <p>Emits the signal by calling all subscribers with the given argument.</p>
+<p>The return value is a future which will fire with a list of results from
+all signal handlers.</p>
 <pre class="source">
-emit(dynamic argument) =&gt; subscriptions.forEach((s) =&gt; s(argument));
+emit(dynamic argument) {
+ var results = &lt;Future&gt;[];
+ for (Callback subscription in subscriptions) {
+   var result = subscription(argument);
+   results.add(result is Future ? result : new Future.immediate(result));
+ }
+ return Futures.wait(results);
+}
 </pre>
 </div>
 </div>
@@ -103,7 +130,7 @@ on(Callback callback) =&gt; subscriptions.add(callback);
         </div>
         
         <div class="footer">
-          <div>This page was generated at 2012-12-28 11:10:59.859</div>
+          <div>This page was generated at 2013-01-02 08:39:49.729</div>
         </div>
         <script async src="../client-live-nav.js"></script>
         </body></html>
