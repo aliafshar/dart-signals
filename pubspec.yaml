@@ -7,4 +7,3 @@ description:  Subscribable signals for Dart.
 homepage:     https://github.com/aliafshar/dart-signals
 dependencies:
   unittest: any
-  signals: any
