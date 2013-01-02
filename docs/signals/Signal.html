@@ -42,12 +42,14 @@ s.emit(1)
 </code></pre>
 <p>Results can be collected from signal handlers which can be Future or
 otherwise:</p>
-<p>   var s = new Signal();
-   s.on((arg) => arg);
-   s.on((arg) => new Futures.immediate(arg));</p>
-<p>   s.emit(1).then((results) => print('Results of callbacks: $results'));</p>
-<blockquote>
-<p>Results of callbacks: <code>1, 1</code></p></blockquote>
+<pre><code>var s = new Signal();
+s.on((arg) =&gt; arg);
+s.on((arg) =&gt; new Futures.immediate(arg));
+</code></pre>
+<pre><code>s.emit(1).then((results) =&gt; print('Results of callbacks: $results'));
+</code></pre>
+<pre><code>&gt; Results of callbacks: [1, 1]
+</code></pre>
 <pre class="source">
 class Signal {
 
@@ -130,7 +132,7 @@ on(Callback callback) =&gt; subscriptions.add(callback);
         </div>
         
         <div class="footer">
-          <div>This page was generated at 2013-01-02 08:45:13.079</div>
+          <div>This page was generated at 2013-01-02 08:46:52.914</div>
         </div>
         <script async src="../client-live-nav.js"></script>
         </body></html>

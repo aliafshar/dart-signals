@@ -10,7 +10,7 @@
           "refId": "Object"
         },
         "kind": "class",
-        "comment": "\nA Signal that can be subscribed to and emitted.\n\nFor example:\n\n    var s = new Signal();\n    s.on((arg) => print('Emitted signal with arg: $arg'));\n    s.emit(1)\n\n    > Emitted signal with arg: 1\n\nResults can be collected from signal handlers which can be Future or\notherwise:\n\n   var s = new Signal();\n   s.on((arg) => arg);\n   s.on((arg) => new Futures.immediate(arg));\n\n   s.emit(1).then((results) => print('Results of callbacks: $results'));\n\n   > Results of callbacks: [1, 1]\n\n\n",
+        "comment": "\nA Signal that can be subscribed to and emitted.\n\nFor example:\n\n    var s = new Signal();\n    s.on((arg) => print('Emitted signal with arg: $arg'));\n    s.emit(1)\n\n    > Emitted signal with arg: 1\n\nResults can be collected from signal handlers which can be Future or\notherwise:\n\n    var s = new Signal();\n    s.on((arg) => arg);\n    s.on((arg) => new Futures.immediate(arg));\n\n    s.emit(1).then((results) => print('Results of callbacks: $results'));\n\n    > Results of callbacks: [1, 1]\n\n\n",
         "name": "Signal",
         "children": [
           {
