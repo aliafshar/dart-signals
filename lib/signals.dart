@@ -22,6 +22,17 @@ typedef dynamic Callback(dynamic arg);
  *
  *     > Emitted signal with arg: 1
  *
+ * Results can be collected from signal handlers which can be Future or
+ * otherwise:
+ *
+ *    var s = new Signal();
+ *    s.on((arg) => arg);
+ *    s.on((arg) => new Futures.immediate(arg));
+ *
+ *    s.emit(1).then((results) => print('Results of callbacks: $results'));
+ *
+ *    > Results of callbacks: [1, 1]
+ *
  */
 class Signal {
 
