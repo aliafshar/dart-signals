@@ -44,7 +44,7 @@ class Signal {
    * The return value is a future which will fire with a list of results from
    * all signal handlers.
    */
-  emit(dynamic argument) {
+  Future<List> emit(dynamic argument) {
     var results = <Future>[];
     for (Callback subscription in subscriptions) {
       var result = subscription(argument);
