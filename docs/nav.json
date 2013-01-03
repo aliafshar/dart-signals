@@ -1,0 +1,1 @@
+[{"name":"signals","types":[{"name":"Callback","kind":"typedef"},{"name":"Signal","kind":"class","members":[{"kind":"method","name":"emit"},{"kind":"method","name":"on"},{"kind":"field","name":"subscriptions"}]}]}]

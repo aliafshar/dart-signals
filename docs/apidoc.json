@@ -1,0 +1,91 @@
+
+[
+  {
+    "kind": "library",
+    "name": "signals",
+    "children": [
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\nA Signal that can be subscribed to and emitted.\n\nFor example:\n\n    var s = new Signal();\n    s.on((arg) => print('Emitted signal with arg: $arg'));\n    s.emit(1)\n\n    > Emitted signal with arg: 1\n\nResults can be collected from signal handlers which can be Future or\notherwise:\n\n    var s = new Signal();\n    s.on((arg) => arg);\n    s.on((arg) => new Futures.immediate(arg));\n\n    s.emit(1).then((results) => print('Results of callbacks: $results'));\n\n    > Results of callbacks: [1, 1]\n\n\n",
+        "name": "Signal",
+        "children": [
+          {
+            "returnType": {
+              "name": "Future",
+              "refId": "Future",
+              "arguments": [
+                {
+                  "name": "List",
+                  "refId": "List"
+                }
+              ]
+            },
+            "kind": "method",
+            "comment": "\nEmits the signal by calling all subscribers with the given argument.\n\nThe return value is a future which will fire with a list of results from\nall signal handlers.\n\n",
+            "name": "emit",
+            "children": [
+              {
+                "ref": {
+                  "name": "dynamic",
+                  "refId": "dynamic"
+                },
+                "kind": "param",
+                "name": "argument",
+                "id": "argument"
+              }
+            ],
+            "id": "emit1()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "comment": "\nConnects a callback to this signal.\n\n",
+            "name": "on",
+            "children": [
+              {
+                "ref": {
+                  "name": "Callback",
+                  "refId": "Callback"
+                },
+                "kind": "param",
+                "name": "callback",
+                "id": "callback"
+              }
+            ],
+            "id": "on1()"
+          },
+          {
+            "ref": {
+              "name": "List",
+              "refId": "List",
+              "arguments": [
+                {
+                  "name": "Callback",
+                  "refId": "Callback"
+                }
+              ]
+            },
+            "kind": "property",
+            "name": "subscriptions",
+            "id": "subscriptions"
+          }
+        ],
+        "id": "Signal"
+      },
+      {
+        "kind": "typedef",
+        "comment": "\nThe type definition of a callback.\n\n",
+        "name": "Callback",
+        "id": "Callback"
+      }
+    ],
+    "id": "file:///usr/local/google/home/afshar/src/arzio/google3/dart-signals/lib/signals.dart"
+  }
+]

@@ -1,0 +1,139 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Signal class / signals Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="signals" data-type="Signal">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../signals.html">signals</a> &rsaquo; <a href="../signals/Signal.html">Signal</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>Signal</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<p>A Signal that can be subscribed to and emitted.</p>
+<p>For example:</p>
+<pre><code>var s = new Signal();
+s.on((arg) =&gt; print('Emitted signal with arg: $arg'));
+s.emit(1)
+</code></pre>
+<pre><code>&gt; Emitted signal with arg: 1
+</code></pre>
+<p>Results can be collected from signal handlers which can be Future or
+otherwise:</p>
+<pre><code>var s = new Signal();
+s.on((arg) =&gt; arg);
+s.on((arg) =&gt; new Futures.immediate(arg));
+</code></pre>
+<pre><code>s.emit(1).then((results) =&gt; print('Results of callbacks: $results'));
+</code></pre>
+<pre><code>&gt; Results of callbacks: [1, 1]
+</code></pre>
+<pre class="source">
+class Signal {
+
+ final List&lt;Callback&gt; subscriptions = &lt;Callback&gt;[];
+
+ /**
+  * Emits the signal by calling all subscribers with the given argument.
+  *
+  * The return value is a future which will fire with a list of results from
+  * all signal handlers.
+  */
+ Future&lt;List&gt; emit(dynamic argument) {
+   var results = &lt;Future&gt;[];
+   for (Callback subscription in subscriptions) {
+     var result = subscription(argument);
+     results.add(result is Future ? result : new Future.immediate(result));
+   }
+   return Futures.wait(results);
+ }
+
+ /**
+  * Connects a callback to this signal.
+  */
+ on(Callback callback) =&gt; subscriptions.add(callback);
+
+}
+</pre>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="subscriptions">
+<button class="show-code">Code</button>
+final List&lt;<a href="../signals/Callback.html">Callback</a>&gt;         <strong>subscriptions</strong> <a class="anchor-link"
+            href="#subscriptions"
+            title="Permalink to Signal.subscriptions">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final List&lt;Callback&gt; subscriptions = &lt;Callback&gt;[];
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="emit">
+<button class="show-code">Code</button>
+Future&lt;List&gt; <strong>emit</strong>(argument) <a class="anchor-link" href="#emit"
+              title="Permalink to Signal.emit">#</a></h4>
+<div class="doc">
+<p>Emits the signal by calling all subscribers with the given argument.</p>
+<p>The return value is a future which will fire with a list of results from
+all signal handlers.</p>
+<pre class="source">
+Future&lt;List&gt; emit(dynamic argument) {
+ var results = &lt;Future&gt;[];
+ for (Callback subscription in subscriptions) {
+   var result = subscription(argument);
+   results.add(result is Future ? result : new Future.immediate(result));
+ }
+ return Futures.wait(results);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="on">
+<button class="show-code">Code</button>
+<strong>on</strong>(<a href="../signals/Callback.html">Callback</a> callback) <a class="anchor-link" href="#on"
+              title="Permalink to Signal.on">#</a></h4>
+<div class="doc">
+<p>Connects a callback to this signal.</p>
+<pre class="source">
+on(Callback callback) =&gt; subscriptions.add(callback);
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2013-01-03 09:12:13.152</div>
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        
