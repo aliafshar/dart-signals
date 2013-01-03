@@ -61,7 +61,7 @@ class Signal {
   * The return value is a future which will fire with a list of results from
   * all signal handlers.
   */
- emit(dynamic argument) {
+ Future&lt;List&gt; emit(dynamic argument) {
    var results = &lt;Future&gt;[];
    for (Callback subscription in subscriptions) {
      var result = subscription(argument);
@@ -97,14 +97,14 @@ final List&lt;Callback&gt; subscriptions = &lt;Callback&gt;[];
 <h3>Methods</h3>
 <div class="method"><h4 id="emit">
 <button class="show-code">Code</button>
-<strong>emit</strong>(argument) <a class="anchor-link" href="#emit"
+Future&lt;List&gt; <strong>emit</strong>(argument) <a class="anchor-link" href="#emit"
               title="Permalink to Signal.emit">#</a></h4>
 <div class="doc">
 <p>Emits the signal by calling all subscribers with the given argument.</p>
 <p>The return value is a future which will fire with a list of results from
 all signal handlers.</p>
 <pre class="source">
-emit(dynamic argument) {
+Future&lt;List&gt; emit(dynamic argument) {
  var results = &lt;Future&gt;[];
  for (Callback subscription in subscriptions) {
    var result = subscription(argument);
@@ -132,7 +132,7 @@ on(Callback callback) =&gt; subscriptions.add(callback);
         </div>
         
         <div class="footer">
-          <div>This page was generated at 2013-01-02 08:51:13.060</div>
+          <div>This page was generated at 2013-01-03 07:14:44.339</div>
         </div>
         <script async src="../client-live-nav.js"></script>
         </body></html>

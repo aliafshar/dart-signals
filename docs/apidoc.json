@@ -15,8 +15,14 @@
         "children": [
           {
             "returnType": {
-              "name": "dynamic",
-              "refId": "dynamic"
+              "name": "Future",
+              "refId": "Future",
+              "arguments": [
+                {
+                  "name": "List",
+                  "refId": "List"
+                }
+              ]
             },
             "kind": "method",
             "comment": "\nEmits the signal by calling all subscribers with the given argument.\n\nThe return value is a future which will fire with a list of results from\nall signal handlers.\n\n",
