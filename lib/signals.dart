@@ -58,4 +58,9 @@ class Signal<T> {
    */
   on(dynamic callback(T argument)) => subscriptions.add(callback);
 
+  /**
+   * Interface to connect this signal by calling it.
+   */
+  call(arg) => on(arg);
+
 }

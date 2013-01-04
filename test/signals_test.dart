@@ -9,37 +9,25 @@ import 'package:signals/signals.dart';
 void main() {
 
 
-  group('Signal', () {
+  group('Signal.', () {
 
     test('Subscribe', () {
       var s = new Signal();
-      expect(
-          s.subscriptions.length,
-          equals(0)
-      );
+      expect(s.subscriptions.length, equals(0));
       s.on((dynamic argument) => null);
-      expect(
-          s.subscriptions.length,
-          equals(1)
-      );
+      expect(s.subscriptions.length, equals(1));
     });
 
-    test('Emit', () {
+    test('Emit.', () {
       var args = <int>[];
       var s = new Signal();
       s.on((argument) => args.add(argument));
-      expect(
-          args.length,
-          equals(0)
-      );
+      expect(args.length, equals(0));
       s.emit(100);
-      expect(
-          args[0],
-          equals(100)
-      );
+      expect(args[0], equals(100));
     });
 
-    test('Emit order', () {
+    test('Emit order.', () {
       var args = <int>[];
       var s = new Signal();
       s.on((argument) => args.add(1));
@@ -47,24 +35,29 @@ void main() {
       s.on((argument) => args.add(3));
       s.on((argument) => args.add(4));
       s.emit(null);
-      expect(
-        args,
-        equals([1, 2, 3, 4])
-      );
+      expect(args, equals([1, 2, 3, 4]));
     });
 
-    test('Results', () {
+    test('Results.', () {
       var s = new Signal();
       s.on((argument) => new Future.immediate(2));
       s.on((argument) => new Future.immediate(1));
       s.emit(null).then((results) =>  expect(results, equals([2, 1])));
     });
 
-    test('Non-future results', () {
+    test('Non-future results.', () {
       var s = new Signal();
       s.on((argument) => 2);
       s.on((argument) => 1);
       s.emit(null).then((results) =>  expect(results, equals([2, 1])));
+    });
+
+    test('Call interface.', () {
+      var args = <int>[];
+      var s = new Signal();
+      s((argument) => args.add(1));
+      s.emit(null);
+      expect(args, equals([1]));
     });
 
   });
