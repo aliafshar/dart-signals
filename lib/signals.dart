@@ -34,7 +34,7 @@ typedef dynamic Callback(dynamic arg);
  *     > Results of callbacks: [1, 1]
  *
  */
-class Signal {
+class Signal<T> {
 
   final List<Callback> subscriptions = <Callback>[];
 
@@ -44,7 +44,7 @@ class Signal {
    * The return value is a future which will fire with a list of results from
    * all signal handlers.
    */
-  Future<List> emit(dynamic argument) {
+  Future<List> emit(T argument) {
     var results = <Future>[];
     for (Callback subscription in subscriptions) {
       var result = subscription(argument);
@@ -56,6 +56,6 @@ class Signal {
   /**
    * Connects a callback to this signal.
    */
-  on(Callback callback) => subscriptions.add(callback);
+  on(dynamic callback(T argument)) => subscriptions.add(callback);
 
 }
