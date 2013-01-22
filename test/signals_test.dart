@@ -3,6 +3,7 @@
 
 // Tests for signals.
 
+import 'dart:async';
 import 'package:unittest/unittest.dart';
 import 'package:signals/signals.dart';
 
@@ -10,19 +11,6 @@ void main() {
 
 
   group('Signal', () {
-
-    test('Subscribe', () {
-      var s = new Signal();
-      expect(
-          s.subscriptions.length,
-          equals(0)
-      );
-      s.on((dynamic argument) => null);
-      expect(
-          s.subscriptions.length,
-          equals(1)
-      );
-    });
 
     test('Emit', () {
       var args = <int>[];
@@ -51,20 +39,6 @@ void main() {
         args,
         equals([1, 2, 3, 4])
       );
-    });
-
-    test('Results', () {
-      var s = new Signal();
-      s.on((argument) => new Future.immediate(2));
-      s.on((argument) => new Future.immediate(1));
-      s.emit(null).then((results) =>  expect(results, equals([2, 1])));
-    });
-
-    test('Non-future results', () {
-      var s = new Signal();
-      s.on((argument) => 2);
-      s.on((argument) => 1);
-      s.emit(null).then((results) =>  expect(results, equals([2, 1])));
     });
 
   });

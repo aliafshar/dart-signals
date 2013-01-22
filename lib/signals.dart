@@ -4,6 +4,8 @@
 // Simple signals for Dart.
 
 library signals;
+import 'dart:async';
+
 
 /**
  * The type definition of a callback.
@@ -14,6 +16,8 @@ typedef dynamic Callback(dynamic arg);
 /**
  * A Signal that can be subscribed to and emitted.
  *
+ * This functionality is entirely replaced by using dart:async [StreamController],
+ *
  * For example:
  *
  *     var s = new Signal();
@@ -22,21 +26,11 @@ typedef dynamic Callback(dynamic arg);
  *
  *     > Emitted signal with arg: 1
  *
- * Results can be collected from signal handlers which can be Future or
- * otherwise:
- *
- *     var s = new Signal();
- *     s.on((arg) => arg);
- *     s.on((arg) => new Futures.immediate(arg));
- *
- *     s.emit(1).then((results) => print('Results of callbacks: $results'));
- *
- *     > Results of callbacks: [1, 1]
  *
  */
 class Signal {
 
-  final List<Callback> subscriptions = <Callback>[];
+  StreamController _stream = new StreamController();
 
   /**
    * Emits the signal by calling all subscribers with the given argument.
@@ -44,18 +38,11 @@ class Signal {
    * The return value is a future which will fire with a list of results from
    * all signal handlers.
    */
-  Future<List> emit(dynamic argument) {
-    var results = <Future>[];
-    for (Callback subscription in subscriptions) {
-      var result = subscription(argument);
-      results.add(result is Future ? result : new Future.immediate(result));
-    }
-    return Futures.wait(results);
-  }
+  emit(dynamic argument) => _stream.add(argument);
 
   /**
    * Connects a callback to this signal.
    */
-  on(Callback callback) => subscriptions.add(callback);
+  on(Callback callback) => _stream.listen(callback);
 
 }
