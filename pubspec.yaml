@@ -1,9 +1,9 @@
 # Copyright (c) 2012, Google Inc
 
 name:         signals
-version:      0.3.0
+version:      0.4.0
 author:       Ali Afshar <afshar@google.com>
-description:  Subscribable signals for Dart.
+description:  Subscribable signals for Dart [Deprecated, use streams instead].
 homepage:     https://github.com/aliafshar/dart-signals
 dependencies:
   unittest: any
