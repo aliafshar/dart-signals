@@ -10,24 +10,20 @@ import 'package:signals/signals.dart';
 void main() {
 
 
-  group('Signal', () {
+  group('Signal.', () {
 
-    test('Emit', () {
+
+
+    test('Emit.', () {
       var args = <int>[];
       var s = new Signal();
       s.on((argument) => args.add(argument));
-      expect(
-          args.length,
-          equals(0)
-      );
+      expect(args.length, equals(0));
       s.emit(100);
-      expect(
-          args[0],
-          equals(100)
-      );
+      expect(args[0], equals(100));
     });
 
-    test('Emit order', () {
+    test('Emit order.', () {
       var args = <int>[];
       var s = new Signal();
       s.on((argument) => args.add(1));
@@ -35,10 +31,15 @@ void main() {
       s.on((argument) => args.add(3));
       s.on((argument) => args.add(4));
       s.emit(null);
-      expect(
-        args,
-        equals([1, 2, 3, 4])
-      );
+      expect(args, equals([1, 2, 3, 4]));
+    });
+
+    test('Call interface.', () {
+      var args = <int>[];
+      var s = new Signal();
+      s((argument) => args.add(1));
+      s.emit(null);
+      expect(args, equals([1]));
     });
 
   });

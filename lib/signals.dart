@@ -28,7 +28,7 @@ typedef dynamic Callback(dynamic arg);
  *
  *
  */
-class Signal {
+class Signal<T> {
 
   StreamController _stream = new StreamController();
 
@@ -44,5 +44,7 @@ class Signal {
    * Connects a callback to this signal.
    */
   on(Callback callback) => _stream.listen(callback);
+
+  call(arg) => on(arg);
 
 }
