@@ -30,7 +30,7 @@ typedef dynamic Callback(dynamic arg);
  */
 class Signal<T> {
 
-  StreamController _stream = new StreamController();
+  final List<Callback> subscriptions = <Callback>[];
 
   /**
    * Emits the signal by calling all subscribers with the given argument.
@@ -38,12 +38,19 @@ class Signal<T> {
    * The return value is a future which will fire with a list of results from
    * all signal handlers.
    */
-  emit(dynamic argument) => _stream.add(argument);
+  Future<List> emit(dynamic argument) {
+    var results = <Future>[];
+    for (Callback subscription in subscriptions) {
+      var result = subscription(argument);
+      results.add(result is Future ? result : new Future.immediate(result));
+    }
+    return Future.wait(results);
+  }
 
   /**
    * Connects a callback to this signal.
    */
-  on(Callback callback) => _stream.listen(callback);
+  on(Callback callback) => subscriptions.add(callback);
 
   call(arg) => on(arg);
 
